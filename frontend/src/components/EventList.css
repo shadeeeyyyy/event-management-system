@@ -1,0 +1,19 @@
+/* src/components/EventList.css */
+.event-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Space between cards */
+    padding: 20px 0;
+}
+
+.loading-message, .error-message, .no-events-found {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    padding: 50px;
+    grid-column: 1 / -1; /* Center across all columns in grid */
+}
+
+.error-message {
+    color: #e74c3c; /* Red for errors */
+}

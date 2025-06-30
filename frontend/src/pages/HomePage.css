@@ -1,0 +1,25 @@
+/* src/pages/HomePage.css */
+.homepage-container {
+    padding: 20px 0;
+}
+
+.homepage-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.homepage-heading::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: #f0a500; /* Accent color */
+    border-radius: 2px;
+}
