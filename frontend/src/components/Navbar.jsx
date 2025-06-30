@@ -1,32 +1,63 @@
 // src/components/Navbar.jsx
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate
 import './Navbar.css';
 
-const Navbar = ({ onSearchChange, currentSearchTerm }) => { // Accept props
+const Navbar = ({ onSearchChange, currentSearchTerm, userInfo = null, onLogout }) => {
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    onLogout(); // Call the logout handler from App.jsx
+    navigate('/login'); // Redirect to login page after logout
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <a href="/" className="navbar-logo">
+        <Link to="/" className="navbar-logo"> {/* Use Link for internal navigation */}
           Eventify
-        </a>
-        <div className="search-bar-container"> {/* New container for search */}
-            <input
-                type="text"
-                placeholder="Search events..."
-                className="search-input"
-                value={currentSearchTerm}
-                onChange={(e) => onSearchChange(e.target.value)}
-            />
+        </Link>
+        <div className="search-bar-container">
+          <input
+            type="text"
+            placeholder="Search events..."
+            className="search-input"
+            value={currentSearchTerm}
+            onChange={(e) => onSearchChange(e.target.value)}
+          />
         </div>
         <ul className="nav-menu">
           <li className="nav-item">
-            <a href="/" className="nav-link">Home</a>
+            <Link to="/" className="nav-link">Home</Link>
+          </li>
+          {userInfo ? ( // If user is logged in
+            <>
+              <li className="nav-item">
+                <span className="nav-link profile-link">
+                  Hi, {userInfo?.name?.split(' ')[0] || 'User'}
+                </span>
+              </li>
+              <li className="nav-item">
+                <button onClick={logoutHandler} className="nav-link logout-button">
+                  Logout
+                </button>
+              </li>
+            </>
+          ) : ( // If user is NOT logged in
+            <>
+              <li className="nav-item">
+                <Link to="/login" className="nav-link">Login</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/register" className="nav-link">Register</Link>
+              </li>
+            </>
+          )}
+          <li className="nav-item">
+            <Link to="#" className="nav-link">About Us</Link>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">About Us</a>
-          </li>
-          <li className="nav-item">
-            <a href="#" className="nav-link">Contact</a>
+            <Link to="#" className="nav-link">Contact</Link>
           </li>
         </ul>
       </div>

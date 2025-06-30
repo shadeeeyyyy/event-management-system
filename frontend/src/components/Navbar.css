@@ -28,6 +28,28 @@
     box-shadow: 0 0 0 3px rgba(240, 165, 0, 0.4); /* Focus ring with accent color */
     background-color: white;
 }
+
+.profile-link {
+    cursor: default; /* Not clickable like a link, but might open dropdown */
+    color: #a5f0a5; /* Example green for logged-in status */
+    font-weight: 600;
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 5px 0;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.logout-button:hover {
+    color: #ff6b6b; /* Reddish on hover */
+    transform: translateY(-2px);
+}
+
 /*
 -- Add responsive adjustments later if needed --
 @media (max-width: 768px) {
