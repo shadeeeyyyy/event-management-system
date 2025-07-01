@@ -4,7 +4,8 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const eventRoutes = require('./routes/eventRoutes');
-const userRoutes = require('./routes/userRoutes'); // Import user routes
+const userRoutes = require('./routes/userRoutes');
+const bookingRoutes = require('./routes/bookingRoutes'); // Import booking routes
 
 dotenv.config();
 connectDB();
@@ -18,7 +19,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/events', eventRoutes);
-app.use('/api/users', userRoutes); // Add user routes here
+app.use('/api/users', userRoutes);
+app.use('/api/bookings', bookingRoutes); // Add booking routes here
 
 app.use((err, req, res, next) => {
     console.error(err.stack);

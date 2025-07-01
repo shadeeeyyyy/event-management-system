@@ -1,0 +1,119 @@
+/* src/pages/MyBookingsPage.css */
+.mybookings-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+.mybookings-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--dark-text);
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.mybookings-heading::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.mybookings-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--light-text);
+    padding: 50px;
+}
+
+.mybookings-message.mybookings-error {
+    color: #e74c3c;
+}
+
+.bookings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Space between booking cards */
+}
+
+.booking-card {
+    display: flex;
+    background-color: #fcfcfc; /* Slightly lighter than container */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.booking-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.booking-event-image {
+    width: 150px; /* Fixed width for image */
+    height: 150px; /* Fixed height */
+    object-fit: cover;
+    flex-shrink: 0; /* Don't shrink image */
+}
+
+.booking-details {
+    padding: 20px;
+    flex-grow: 1; /* Allow details to take remaining space */
+}
+
+.booking-title {
+    font-size: 1.6rem;
+    color: var(--dark-text);
+    margin-bottom: 10px;
+}
+
+.booking-info {
+    font-size: 0.95rem;
+    color: var(--light-text);
+    margin-bottom: 5px;
+}
+
+.booking-info strong {
+    color: #555;
+}
+
+.booking-status {
+    font-weight: bold;
+    color: #27ae60; /* Green for confirmed status */
+}
+
+.booking-date {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .booking-card {
+        flex-direction: column; /* Stack image and details on small screens */
+        text-align: center;
+    }
+    .booking-event-image {
+        width: 100%;
+        height: 200px;
+        border-radius: 8px 8px 0 0;
+    }
+    .booking-details {
+        padding: 15px;
+    }
+    .mybookings-heading {
+        font-size: 2rem;
+    }
+}

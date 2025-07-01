@@ -130,3 +130,88 @@
 
 /* Add the 'active' class to modal-overlay when `selectedEvent` is not null */
 /* This class will be added conditionally in App.jsx */
+
+.modal-login-prompt {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    color: #555;
+}
+
+.modal-login-prompt a {
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.modal-login-prompt a:hover {
+    text-decoration: underline;
+}
+
+.booking-form-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    justify-content: center; /* Center the booking elements */
+}
+
+.booking-form-group label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark-text);
+}
+
+.booking-form-group input {
+    width: 80px; /* Smaller width for tickets input */
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.booking-form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(240, 165, 0, 0.2);
+}
+
+.total-booking-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.booking-status-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.booking-status-message.success {
+    background-color: #e6ffe6;
+    color: #27ae60;
+    border: 1px solid #27ae60;
+}
+
+.booking-status-message.error {
+    background-color: #ffe6e6;
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+}
+
+/* Adjust book-now-button for general use if needed */
+.book-now-button {
+    /* Keep existing styles, ensure it aligns with other buttons */
+    margin-top: 20px; /* Ensure space from above elements */
+}
+
+.book-now-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    color: #666;
+}

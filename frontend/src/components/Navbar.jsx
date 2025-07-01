@@ -1,20 +1,20 @@
 // src/components/Navbar.jsx
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = ({ onSearchChange, currentSearchTerm, userInfo = null, onLogout }) => {
+const Navbar = ({ onSearchChange, currentSearchTerm, userInfo, onLogout }) => {
   const navigate = useNavigate();
 
   const logoutHandler = () => {
-    onLogout(); // Call the logout handler from App.jsx
-    navigate('/login'); // Redirect to login page after logout
+    onLogout();
+    navigate('/login');
   };
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo"> {/* Use Link for internal navigation */}
+        <Link to="/" className="navbar-logo">
           Eventify
         </Link>
         <div className="search-bar-container">
@@ -30,8 +30,11 @@ const Navbar = ({ onSearchChange, currentSearchTerm, userInfo = null, onLogout }
           <li className="nav-item">
             <Link to="/" className="nav-link">Home</Link>
           </li>
-          {userInfo ? ( // If user is logged in
+          {userInfo ? (
             <>
+              <li className="nav-item">
+                <Link to="/mybookings" className="nav-link">My Bookings</Link> {/* New link */}
+              </li>
               <li className="nav-item">
                 <span className="nav-link profile-link">
                   Hi, {userInfo?.name?.split(' ')[0] || 'User'}
@@ -43,7 +46,7 @@ const Navbar = ({ onSearchChange, currentSearchTerm, userInfo = null, onLogout }
                 </button>
               </li>
             </>
-          ) : ( // If user is NOT logged in
+          ) : (
             <>
               <li className="nav-item">
                 <Link to="/login" className="nav-link">Login</Link>
