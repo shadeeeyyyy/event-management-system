@@ -1,19 +1,34 @@
-/* src/components/EventList.css */
+/* src/components/EventList.css - Event Grid Layout */
+
 .event-list-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-    gap: 30px; /* Space between cards */
-    padding: 20px 0;
+    /* Responsive grid: columns will be at least 280px wide, max 1fr (equal width) */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg); /* Space between cards */
+    padding: var(--spacing-md) 0;
 }
 
 .loading-message, .error-message, .no-events-found {
     text-align: center;
     font-size: 1.2rem;
-    color: #555;
-    padding: 50px;
-    grid-column: 1 / -1; /* Center across all columns in grid */
+    color: var(--text-medium);
+    padding: var(--spacing-xl);
+    grid-column: 1 / -1; /* Make these messages span all grid columns */
 }
 
 .error-message {
     color: #e74c3c; /* Red for errors */
+    font-weight: 500;
+}
+
+.no-events-found {
+    color: var(--text-light);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .event-list-grid {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+        gap: var(--spacing-md);
+    }
 }

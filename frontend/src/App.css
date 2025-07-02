@@ -1,23 +1,44 @@
-/* src/App.css (General app layout) */
+/* src/App.css - Main Application Layout and Transitions (Vibrant Theme) */
+
 .App {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .main-content {
-    flex-grow: 1; /* Pushes content down if needed, takes available space */
-    padding: 20px;
-    max-width: 1200px;
-    margin: 20px auto;
+    flex-grow: 1;
+    padding: var(--spacing-lg); /* Increased padding */
+    max-width: 1440px; /* Wider max-width for larger screens */
+    width: 100%;
+    animation: fadeInScale var(--transition-speed-normal) var(--transition-ease); /* Page transition */
 }
 
+/* Modal Overlay Container - Controls modal visibility for transitions */
 .modal-overlay-container .modal-overlay {
     opacity: 0;
     visibility: hidden;
+    transition: opacity var(--transition-speed-normal) var(--transition-ease),
+                visibility var(--transition-speed-normal) var(--transition-ease);
 }
 
 .modal-overlay-container.active .modal-overlay {
     opacity: 1;
     visibility: visible;
+}
+
+/* Responsive adjustments for main content padding */
+@media (max-width: 1024px) {
+    .main-content {
+        padding: var(--spacing-md);
+        margin: var(--spacing-md) auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: var(--spacing-sm);
+        margin: var(--spacing-sm) auto;
+    }
 }

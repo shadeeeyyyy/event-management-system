@@ -1,72 +1,208 @@
-/* src/components/Navbar.css */
-/* ... existing styles ... */
+/* src/components/Navbar.css - Navbar Styling (Grid Layout) */
+
+.navbar {
+    background-color: var(--primary-color); /* Electric Blue */
+    padding: var(--spacing-md) 0;
+    color: white;
+    box-shadow: 0 4px 15px var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    transition: all var(--transition-speed-normal) var(--transition-ease); /* Smooth transition for shrinking */
+}
+
+/* Navbar shrunk state */
+.navbar.scrolled {
+    padding: var(--spacing-sm) 0; /* Reduce padding */
+    background-color: rgba(67, 97, 238, 0.95); /* Slightly transparent when scrolled */
+    box-shadow: 0 2px 10px var(--shadow-sm);
+}
+
+.navbar-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+
+    /* --- GRID LAYOUT FOR DESKTOP --- */
+    display: grid;
+    /* 1fr for logo, 3fr for search, 3fr for nav menu */
+    grid-template-columns: 1fr 2.5fr 2fr;
+    align-items: center;
+    gap: var(--spacing-lg); /* Gap between grid columns */
+
+    transition: all var(--transition-speed-normal) var(--transition-ease); /* For smooth resizing */
+}
+
+/* Assign grid areas */
+.navbar-logo {
+    grid-column: 1; /* First column */
+    color: var(--tertiary-color); /* Sunshine Yellow for logo */
+    text-decoration: none;
+    font-size: 2.2rem; /* Larger logo */
+    font-weight: 800;
+    transition: all var(--transition-speed-normal) var(--transition-ease);
+}
+
+.navbar.scrolled .navbar-logo {
+    font-size: 1.8rem; /* Shrink logo */
+}
+
+.navbar-logo:hover {
+    color: var(--background-light); /* White on hover */
+    transform: scale(1.05); /* Subtle scale */
+}
 
 .search-bar-container {
-    flex-grow: 1; /* Allow it to take available space */
-    margin: 0 30px; /* Space from logo and nav menu */
-    max-width: 400px; /* Limit width */
+    grid-column: 2; /* Second column */
+    /* flex-grow: 1; no longer needed with grid fr units */
+    /* margin: 0 var(--spacing-lg); no longer needed, gap handles spacing */
+    max-width: 100%; /* Allow it to fill its grid column */
 }
 
 .search-input {
     width: 100%;
-    padding: 10px 15px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 25px; /* Rounded corners */
+    border-radius: var(--border-radius-lg);
     outline: none;
     font-size: 1rem;
-    background-color: #f0f2f5; /* Light background for input */
-    color: #333;
-    transition: all 0.3s ease; /* Smooth transition on focus */
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    transition: all var(--transition-speed-fast) var(--transition-ease);
+    box-shadow: inset 0 2px 5px var(--shadow-sm);
 }
 
 .search-input::placeholder {
-    color: #888;
+    color: var(--text-light);
 }
 
 .search-input:focus {
-    box-shadow: 0 0 0 3px rgba(240, 165, 0, 0.4); /* Focus ring with accent color */
+    box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.4);
     background-color: white;
 }
 
+.nav-menu {
+    grid-column: 3; /* Third column */
+    list-style: none;
+    display: flex; /* Still use flex for items within the menu */
+    justify-content: flex-end; /* Align menu items to the right */
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.nav-link, .logout-button, .profile-link {
+    color: var(--background-light);
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: var(--spacing-xs) 0;
+    transition: all var(--transition-speed-fast) var(--transition-ease);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.navbar.scrolled .nav-link,
+.navbar.scrolled .logout-button,
+.navbar.scrolled .profile-link {
+    font-size: 1rem;
+}
+
+.nav-link:hover, .logout-button:hover {
+    color: var(--secondary-color);
+    transform: translateY(-2px);
+    animation: pulse 0.5s infinite alternate;
+}
+
 .profile-link {
-    cursor: default; /* Not clickable like a link, but might open dropdown */
-    color: #a5f0a5; /* Example green for logged-in status */
+    font-weight: 600;
+    color: var(--tertiary-color);
+    cursor: default;
+}
+
+.admin-link {
+    color: var(--success-color);
     font-weight: 600;
 }
 
+.admin-link:hover {
+    color: var(--background-light);
+}
+
 .logout-button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.1rem;
-    cursor: pointer;
-    padding: 5px 0;
-    transition: color 0.3s ease, transform 0.3s ease;
+    color: #FF6B6B;
 }
-
 .logout-button:hover {
-    color: #ff6b6b; /* Reddish on hover */
-    transform: translateY(-2px);
+    color: #E74C3C;
 }
 
-/*
--- Add responsive adjustments later if needed --
-@media (max-width: 768px) {
+
+/* Responsive Adjustments for Navbar */
+
+/* Tablet and Smaller Desktops (1024px and below) */
+@media (max-width: 1024px) {
     .navbar-container {
-        flex-wrap: wrap;
-        justify-content: center;
+        grid-template-columns: 1.5fr 2.5fr; /* Adjust grid for slightly smaller screens */
+        gap: var(--spacing-md);
+        padding: 0 var(--spacing-md);
+    }
+    .navbar-logo {
+        grid-column: 1;
+        font-size: 2rem;
+    }
+    .navbar.scrolled .navbar-logo {
+        font-size: 1.6rem;
     }
     .search-bar-container {
-        order: 3; // Puts search bar below logo and menu on small screens
-        width: 90%;
-        margin: 15px 0 0 0;
+        grid-column: 2;
     }
     .nav-menu {
-        order: 2;
-        flex-basis: 100%;
-        justify-content: center;
-        margin-top: 15px;
+        grid-column: 1 / span 2; /* Make menu span both columns below search/logo */
+        justify-content: center; /* Center menu items */
+        margin-top: var(--spacing-md); /* Add space above menu */
+        gap: var(--spacing-md);
+        flex-wrap: wrap; /* Allow menu items to wrap */
+    }
+    .nav-link, .logout-button, .profile-link {
+        font-size: 1rem;
     }
 }
-*/
+
+/* Mobile (768px and below) */
+@media (max-width: 768px) {
+    .navbar-container {
+        /* Switch to a stacked flexbox layout for mobile for better control */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: var(--spacing-sm) var(--spacing-md);
+        gap: var(--spacing-sm); /* Smaller gap for stacked items */
+    }
+
+    .navbar-logo {
+        margin-bottom: var(--spacing-sm);
+        font-size: 1.8rem;
+    }
+    .navbar.scrolled .navbar-logo {
+        font-size: 1.6rem;
+    }
+
+    .search-bar-container {
+        width: 90%; /* Make search bar wider on small screens */
+        margin: var(--spacing-md) 0; /* Add top/bottom margin */
+        order: 2; /* Place search bar after logo */
+    }
+
+    .nav-menu {
+        flex-basis: 100%;
+        justify-content: center;
+        margin-top: var(--spacing-sm);
+        flex-wrap: wrap;
+        gap: var(--spacing-sm) var(--spacing-md);
+        order: 3; /* Place nav menu after search bar */
+    }
+    .nav-item {
+        flex-basis: auto;
+    }
+}

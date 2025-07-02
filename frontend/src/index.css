@@ -1,17 +1,128 @@
-/* src/index.css (Global resets and font imports) */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+/* src/index.css - Global Styles and CSS Variables (Vibrant Theme) */
 
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #f4f7f6; /* Light background */
-    color: #333;
+/* Font Import: Inter for a modern, clean, and highly readable look */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* CSS Variables for consistent theming */
+:root {
+    /* Color Palette */
+    --primary-color: #4361EE;   /* Electric Blue - Main highlights, buttons, links */
+    --secondary-color: #F72585; /* Energetic Pink - Accents, hover states */
+    --tertiary-color: #FFD166;  /* Sunshine Yellow - Headings, card backgrounds, highlights */
+    --success-color: #06D6A0;   /* Fresh Green - Success messages, positive CTAs */
+
+    /* Neutral Colors */
+    --text-dark: #212121;       /* Very dark grey for primary text */
+    --text-medium: #424242;     /* Medium grey for secondary text */
+    --text-light: #757575;      /* Lighter grey for subtle text */
+    --background-light: #F8F8F8; /* Lightest background */
+    --background-medium: #EEEEEE; /* Slightly darker background for cards/sections */
+    --border-color: #E0E0E0;    /* Light grey for borders */
+
+    /* Shadows */
+    --shadow-sm: rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    --shadow-md: rgba(0, 0, 0, 0.15); /* Medium shadow for hover/active */
+    --shadow-lg: rgba(0, 0, 0, 0.25); /* Stronger shadow for prominent elements */
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 48px;
+
+    /* Border Radius */
+    --border-radius-sm: 6px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 30px; /* For buttons, inputs */
+
+    /* Transitions */
+    --transition-speed-fast: 0.2s;
+    --transition-speed-normal: 0.4s;
+    --transition-speed-slow: 0.6s;
+    --transition-ease: cubic-bezier(0.4, 0, 0.2, 1); /* Material Design standard ease-out */
+    --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55); /* For bounce effect */
 }
 
-* {
+/* Universal Box-Sizing */
+*, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+/* Body and Typography Defaults */
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* Basic Link Styling */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-speed-fast) var(--transition-ease);
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+/* Button Base Styles */
+button {
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: background-color var(--transition-speed-fast) var(--transition-ease),
+                transform var(--transition-speed-fast) var(--transition-ease),
+                box-shadow var(--transition-speed-fast) var(--transition-ease);
+    font-weight: 600;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-3px); /* Soft lift */
+    box-shadow: 0 6px 15px var(--shadow-md);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--border-color) !important; /* Override specific button colors */
+    color: var(--text-light) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-md);
+    font-weight: 700;
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.flex-center { display: flex; justify-content: center; align-items: center; }
+
+/* Keyframe Animations */
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); } /* Subtle bounce */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); } /* Subtle pulse */
+    100% { transform: scale(1); }
 }
