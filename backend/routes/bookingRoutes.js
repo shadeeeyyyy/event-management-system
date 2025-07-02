@@ -81,19 +81,4 @@ router.get('/mybookings', protect, async (req, res) => {
     }
 });
 
-// Optional: Admin can get all bookings
-// @desc    Get all bookings (for admin)
-// @route   GET /api/bookings
-// @access  Private/Admin
-// router.get('/', protect, admin, async (req, res) => {
-//     try {
-//         const bookings = await Booking.find({})
-//             .populate('user', 'name email')
-//             .populate('event', 'title date');
-//         res.json(bookings);
-//     } catch (error) {
-//         res.status(500).json({ message: error.message });
-//     }
-// });
-
 module.exports = router;
